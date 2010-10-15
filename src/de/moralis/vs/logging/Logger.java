@@ -16,7 +16,7 @@ public class Logger {
         log.setUseParentHandlers(false);
 
         try {
-            FileHandler fileHandler = new FileHandler(new File(".").getCanonicalPath() + "\\logs\\" + name + ".xml");
+            FileHandler fileHandler = new FileHandler(new File(".").getCanonicalPath() + "\\logs\\xml\\" + name + ".xml");
             log.addHandler(fileHandler);
         } catch (IOException e) {
             log.severe("can not create file handler: " + e.getMessage());
