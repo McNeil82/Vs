@@ -1,4 +1,4 @@
-package de.moralis.vs.logging.xslt;
+package de.moralis.logging.xslt;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class LoggingTransformer {
     public void createHtml() {
         try {
-            File xslt = new File(new File(".").getCanonicalPath() + "\\src\\de\\moralis\\vs\\logging\\xslt\\LoggingHtml.xslt");
+            File xslt = new File(new File(".").getCanonicalPath() + "\\src\\de\\moralis\\logging\\xslt\\LoggingHtml.xslt");
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslt));
@@ -32,7 +32,6 @@ public class LoggingTransformer {
                 transformer.setParameter("logName", xmlFile.getName());
                 transformer.transform(new StreamSource(xmlFile), new StreamResult(html));
             }
-
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("can not get xml file: " + e.getMessage());

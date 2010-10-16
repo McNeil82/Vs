@@ -1,7 +1,7 @@
 package de.moralis.vs;
 
+import de.moralis.logging.Logger;
 import de.moralis.vs.general.Creature;
-import de.moralis.vs.logging.Logger;
 
 public class Combat {
     private static final double STANDARD_DEFENSE_VALUE = 0.2;
@@ -16,7 +16,7 @@ public class Combat {
         this.creature2 = creature2;
     }
 
-    public void fight() {
+    public Creature fight() {
         log.info(creature1.toString());
         log.info(creature2.toString());
 
@@ -45,8 +45,10 @@ public class Combat {
 
         if (currentLifePointsCreature1 > 0) {
             log.info(creature1.getName() + " wins");
+            return creature1;
         } else {
             log.info(creature2.getName() + " wins");
+            return creature2;
         }
     }
 

@@ -5,8 +5,6 @@
 
     <xsl:param name="logName"/>
 
-    <xsl:variable name="line" select="1" as="xs:integer"/>
-
     <xsl:template match="/">
         <html>
             <head>

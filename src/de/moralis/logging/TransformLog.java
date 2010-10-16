@@ -1,6 +1,6 @@
-package de.moralis.vs;
+package de.moralis.logging;
 
-import de.moralis.vs.logging.xslt.LoggingTransformer;
+import de.moralis.logging.xslt.LoggingTransformer;
 
 public class TransformLog {
     public static void main(String[] args) {
