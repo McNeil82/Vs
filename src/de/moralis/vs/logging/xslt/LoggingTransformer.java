@@ -15,7 +15,7 @@ public class LoggingTransformer {
         try {
             File xslt = new File(new File(".").getCanonicalPath() + "\\src\\de\\moralis\\vs\\logging\\xslt\\LoggingHtml.xslt");
 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslt));
 
             File xmlDirectory = new File(new File(".").getCanonicalPath() + "\\logs\\xml");
@@ -29,6 +29,7 @@ public class LoggingTransformer {
                         throw new IOException("can not create file: " + html.getAbsolutePath());
                     }
                 }
+                transformer.setParameter("logName", xmlFile.getName());
                 transformer.transform(new StreamSource(xmlFile), new StreamResult(html));
             }
 
