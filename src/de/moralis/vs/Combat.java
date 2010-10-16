@@ -44,9 +44,9 @@ public class Combat {
         }
 
         if (currentLifePointsCreature1 > 0) {
-            log.info(creature2.getName() + " loses");
+            log.info(creature1.getName() + " wins");
         } else {
-            log.info(creature1.getName() + " loses");
+            log.info(creature2.getName() + " wins");
         }
     }
 
