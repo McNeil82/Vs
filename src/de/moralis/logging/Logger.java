@@ -1,6 +1,5 @@
 package de.moralis.logging;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -20,7 +19,7 @@ public class Logger {
         log.setUseParentHandlers(false);
 
         try {
-            FileHandler fileHandler = new FileHandler(new File(".").getCanonicalPath() + "\\logs\\xml\\" + name + ".xml");
+            FileHandler fileHandler = new FileHandler("logs/xml/" + name + ".xml");
             log.addHandler(fileHandler);
         } catch (IOException e) {
             log.severe("can not create file handler: " + e.getMessage());

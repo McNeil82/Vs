@@ -14,38 +14,72 @@ import static java.util.logging.LogManager.getLogManager;
 
 public class LoggingTransformer {
     public void createHtml(boolean testFilesOnly) {
-        getLogManager().reset();
+        resetAllLoggers();
 
-        try {
-            File xslt = new File(new File(".").getCanonicalPath() + "\\src\\de\\moralis\\logging\\xslt\\LoggingHtml.xslt");
+        File xslt = loadXslt();
+        Transformer transformer = createTransformer(xslt);
 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
-            Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslt));
+        File[] xmlFiles = loadXmlFiles(testFilesOnly);
 
-            File xmlDirectory = new File(new File(".").getCanonicalPath() + "\\logs\\xml");
-
-            File[] xmlFiles = xmlDirectory.listFiles(new XmlFileFilter(testFilesOnly));
-            for (File xmlFile : xmlFiles) {
-                File html = new File(new File(".").getCanonicalPath() + "\\logs\\html\\" + xmlFile.getName() + ".html");
-                if (!html.exists()) {
-                    boolean success = html.createNewFile();
-                    if (!success) {
-                        throw new IOException("can not create file: " + html.getAbsolutePath());
-                    }
-                }
-                transformer.setParameter("logName", xmlFile.getName());
-                transformer.transform(new StreamSource(xmlFile), new StreamResult(html));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("can not get xml file: " + e.getMessage());
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-            System.err.println("wrong transformer configuration: " + e.getMessage());
-        } catch (TransformerException e) {
-            e.printStackTrace();
-            System.err.println("transformer exception: " + e.getMessage());
+        for (File xmlFile : xmlFiles) {
+            tramsformToHtml(transformer, xmlFile);
         }
+    }
+
+    private Transformer createTransformer(File xslt) {
+        Transformer transformer = null;
+        if (xslt != null) {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance("net.sf.saxon.TransformerFactoryImpl", null);
+            try {
+                transformer = transformerFactory.newTransformer(new StreamSource(xslt));
+            } catch (TransformerConfigurationException e) {
+                e.printStackTrace();
+                System.err.println("wrong transformer configuration: " + e.getMessage());
+            }
+        }
+
+        return transformer;
+    }
+
+    private void tramsformToHtml(Transformer transformer, File xmlFile) {
+        if (transformer != null) {
+            File html = new File("logs/html/" + xmlFile.getName() + ".html");
+            if (!html.exists()) {
+                boolean success;
+                try {
+                    success = html.createNewFile();
+                    if (!success) {
+                        throw new IOException();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.err.println("can not create file: " + html.getAbsolutePath());
+                }
+            }
+
+            transformer.setParameter("logName", xmlFile.getName());
+
+            try {
+                transformer.transform(new StreamSource(xmlFile), new StreamResult(html));
+            } catch (TransformerException e) {
+                e.printStackTrace();
+                System.err.println("transformer exception: " + e.getMessage());
+            }
+        }
+    }
+
+    private File[] loadXmlFiles(boolean testFilesOnly) {
+        File xmlDirectory = new File("logs/xml");
+
+        return xmlDirectory.listFiles(new XmlFileFilter(testFilesOnly));
+    }
+
+    private File loadXslt() {
+        return new File("src/de/moralis/logging/xslt/LoggingHtml.xslt");
+    }
+
+    private void resetAllLoggers() {
+        getLogManager().reset();
     }
 
     private class XmlFileFilter implements FileFilter {
