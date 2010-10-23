@@ -18,7 +18,7 @@
                     <h2>
                         <xsl:value-of select="$logName"/>
                     </h2>
-                    <table cellspacing="0">
+                    <table>
                         <xsl:apply-templates/>
                     </table>
                 </div>

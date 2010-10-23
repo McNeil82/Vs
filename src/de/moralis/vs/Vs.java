@@ -1,5 +1,6 @@
 package de.moralis.vs;
 
+import de.moralis.logging.LoggingTransformer;
 import de.moralis.vs.general.Creature;
 import de.moralis.vs.models.Mice;
 import de.moralis.vs.models.Rat;
@@ -18,5 +19,11 @@ public class Vs {
 
         Combat combat = new Combat(mice, rat);
         combat.fight();
+
+        generateLogs();
+    }
+
+    private static void generateLogs() {
+        new LoggingTransformer().createHtml(false);
     }
 }

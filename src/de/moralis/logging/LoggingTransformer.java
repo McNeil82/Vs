@@ -1,4 +1,4 @@
-package de.moralis.logging.xslt;
+package de.moralis.logging;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -10,8 +10,12 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 
+import static java.util.logging.LogManager.getLogManager;
+
 public class LoggingTransformer {
-    public void createHtml() {
+    public void createHtml(boolean testFilesOnly) {
+        getLogManager().reset();
+
         try {
             File xslt = new File(new File(".").getCanonicalPath() + "\\src\\de\\moralis\\logging\\xslt\\LoggingHtml.xslt");
 
@@ -20,7 +24,7 @@ public class LoggingTransformer {
 
             File xmlDirectory = new File(new File(".").getCanonicalPath() + "\\logs\\xml");
 
-            File[] xmlFiles = xmlDirectory.listFiles(new XmlFileFilter());
+            File[] xmlFiles = xmlDirectory.listFiles(new XmlFileFilter(testFilesOnly));
             for (File xmlFile : xmlFiles) {
                 File html = new File(new File(".").getCanonicalPath() + "\\logs\\html\\" + xmlFile.getName() + ".html");
                 if (!html.exists()) {
@@ -45,9 +49,19 @@ public class LoggingTransformer {
     }
 
     private class XmlFileFilter implements FileFilter {
+        private boolean testFilesOnly;
+
+        private XmlFileFilter(boolean testFilesOnly) {
+            this.testFilesOnly = testFilesOnly;
+        }
 
         public boolean accept(File pathname) {
-            return pathname.getName().endsWith(".xml");
+            String filter = ".xml";
+            if (testFilesOnly) {
+                filter = "Test.xml";
+            }
+
+            return pathname.getName().endsWith(filter);
         }
     }
 }
