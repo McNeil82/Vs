@@ -5,6 +5,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
 import static java.lang.Boolean.TRUE;
+import static java.util.logging.Level.CONFIG;
 import static java.util.logging.Level.OFF;
 
 public class Logger {
@@ -27,6 +28,8 @@ public class Logger {
 
         if (Boolean.valueOf(System.getProperty("debug")) != TRUE) {
             log.setLevel(OFF);
+        } else {
+            log.setLevel(CONFIG);
         }
 
         return new Logger(log);
@@ -38,6 +41,10 @@ public class Logger {
 
     public void warning(String msg) {
         log.warning(msg);
+    }
+
+    public void comment(String msg) {
+        log.config(msg);
     }
 
     public void setLogLevel(Level logLevel) {

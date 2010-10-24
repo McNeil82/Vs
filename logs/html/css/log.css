@@ -29,3 +29,7 @@ tr.info {
 tr.warning {
     background-color: #f7a4a4;
 }
+
+tr.config {
+    background-color: #cccccc;
+}

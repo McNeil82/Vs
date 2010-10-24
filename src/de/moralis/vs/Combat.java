@@ -17,8 +17,8 @@ public class Combat {
     }
 
     public Creature fight() {
-        log.info(creature1.toString());
-        log.info(creature2.toString());
+        log.comment(creature1.toString());
+        log.comment(creature2.toString());
 
         int currentLifePointsCreature1 = creature1.getTotalLifePoints();
         int currentLifePointsCreature2 = creature2.getTotalLifePoints();

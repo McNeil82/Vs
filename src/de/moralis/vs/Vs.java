@@ -14,10 +14,18 @@ public class Vs {
     public static void main(String[] args) {
         evaluateArgs(args);
 
-        Creature mice = new Mice();
-        Creature rat = new Rat();
+        Creature mice1 = new Mice();
+        Creature mice2 = new Mice();
+        Creature rat1 = new Rat();
+        Creature rat2 = new Rat();
 
-        Combat combat = new Combat(mice, rat);
+        Combat combat = new Combat(mice1, rat1);
+        combat.fight();
+
+        combat = new Combat(mice1, mice2);
+        combat.fight();
+
+        combat = new Combat(rat1, rat2);
         combat.fight();
 
         generateLogs();
