@@ -83,7 +83,7 @@ public class LoggingTransformer {
     }
 
     private class XmlFileFilter implements FileFilter {
-        private boolean testFilesOnly;
+        private final boolean testFilesOnly;
 
         private XmlFileFilter(boolean testFilesOnly) {
             this.testFilesOnly = testFilesOnly;

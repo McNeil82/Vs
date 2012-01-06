@@ -2,11 +2,9 @@ package de.moralis.logging;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 
 import static java.lang.Boolean.TRUE;
-import static java.util.logging.Level.CONFIG;
-import static java.util.logging.Level.OFF;
+import static java.util.logging.Level.*;
 
 public class Logger {
     private final java.util.logging.Logger log;
@@ -47,7 +45,7 @@ public class Logger {
         log.config(msg);
     }
 
-    public void setLogLevel(Level logLevel) {
-        log.setLevel(logLevel);
+    public void setLogLevelToAll() {
+        log.setLevel(ALL);
     }
 }

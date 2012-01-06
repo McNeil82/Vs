@@ -3,7 +3,7 @@ package de.moralis.vs;
 import de.moralis.logging.Logger;
 import de.moralis.vs.general.Creature;
 
-public class Combat {
+class Combat {
     private static final double STANDARD_DEFENSE_VALUE = 0.2;
 
     private final Creature creature1;
