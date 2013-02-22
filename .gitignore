@@ -1,4 +1,7 @@
 *.iml
 /out/
 /.idea/
-/logs/
+/logs/html/*
+!/logs/html/css/
+/logs/xml/*
+!/logs/xml/logger.dtd
