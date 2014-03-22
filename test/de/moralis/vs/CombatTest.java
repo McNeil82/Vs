@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class CombatTest extends AbstractTest {
 
-    @Test()
+    @Test
     public void testWinnerRatioMiceVsRat() {
         log.comment("Mice vs. Rat");
 
@@ -39,7 +39,7 @@ public class CombatTest extends AbstractTest {
         log.info("rat ratio: " + ratRatio + "%");
     }
 
-    @Test()
+    @Test
     public void testWinnerRatioMiceVsMice() {
         log.comment("Mice vs. Mice");
 
@@ -82,7 +82,7 @@ public class CombatTest extends AbstractTest {
         log.info("mice2 ratio: " + mice2Ratio + "%");
     }
 
-    @Test()
+    @Test
     public void testWinnerRatioRatVsRat() {
         log.comment("Rat vs. Rat");
 
