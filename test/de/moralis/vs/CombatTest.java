@@ -2,23 +2,23 @@ package de.moralis.vs;
 
 import de.moralis.testapi.AbstractTest;
 import de.moralis.vs.general.Creature;
-import de.moralis.vs.models.Mice;
+import de.moralis.vs.models.Mouse;
 import de.moralis.vs.models.Rat;
 import org.testng.annotations.Test;
 
 public class CombatTest extends AbstractTest {
 
     @Test
-    public void testWinnerRatioMiceVsRat() {
-        log.comment("Mice vs. Rat");
+    public void testWinnerRatioMouseVsRat() {
+        log.comment("Mouse vs. Rat");
 
-        Creature mice = new Mice();
+        Creature mouse = new Mouse();
         Creature rat = new Rat();
 
-        int miceCounter = 0;
+        int mouseCounter = 0;
         int ratCounter = 0;
 
-        Combat combat = new Combat(mice, rat);
+        Combat combat = new Combat(mouse, rat);
 
         for (int i = 1; i <= 1000; ++i) {
             Creature winner = combat.fight();
@@ -26,79 +26,79 @@ public class CombatTest extends AbstractTest {
             if (winner.equals(rat)) {
                 ++ratCounter;
             } else {
-                ++miceCounter;
+                ++mouseCounter;
             }
         }
 
-        double miceRatio = miceCounter / 10d;
+        double mouseRatio = mouseCounter / 10d;
         double ratRatio = ratCounter / 10d;
 
-        log.info("mice wins: " + miceCounter + " times");
+        log.info("mouse wins: " + mouseCounter + " times");
         log.info("rat wins: " + ratCounter + " times");
-        log.info("mice ratio: " + miceRatio + "%");
+        log.info("mouse ratio: " + mouseRatio + "%");
         log.info("rat ratio: " + ratRatio + "%");
     }
 
     @Test
-    public void testWinnerRatioMice1VsMice2() {
-        log.comment("Mice1 vs. Mice2");
+    public void testWinnerRatioMouse1VsMouse2() {
+        log.comment("Mouse1 vs. Mouse2");
 
-        Creature mice1 = new Mice();
-        Creature mice2 = new Mice();
+        Creature mouse1 = new Mouse();
+        Creature mouse2 = new Mouse();
 
-        int mice1Counter = 0;
-        int mice2Counter = 0;
+        int mouse1Counter = 0;
+        int mouse2Counter = 0;
 
-        Combat combat = new Combat(mice1, mice2);
+        Combat combat = new Combat(mouse1, mouse2);
 
         for (int i = 1; i <= 1000; ++i) {
             Creature winner = combat.fight();
 
-            if (winner.equals(mice2)) {
-                ++mice2Counter;
+            if (winner.equals(mouse2)) {
+                ++mouse2Counter;
             } else {
-                ++mice1Counter;
+                ++mouse1Counter;
             }
         }
 
-        double mice1Ratio = mice1Counter / 10d;
-        double mice2Ratio = mice2Counter / 10d;
+        double mouse1Ratio = mouse1Counter / 10d;
+        double mouse2Ratio = mouse2Counter / 10d;
 
-        log.info("mice1 wins: " + mice1Counter + " times");
-        log.info("mice2 wins: " + mice2Counter + " times");
-        log.info("mice1 ratio: " + mice1Ratio + "%");
-        log.info("mice2 ratio: " + mice2Ratio + "%");
+        log.info("mouse1 wins: " + mouse1Counter + " times");
+        log.info("mouse2 wins: " + mouse2Counter + " times");
+        log.info("mouse1 ratio: " + mouse1Ratio + "%");
+        log.info("mouse2 ratio: " + mouse2Ratio + "%");
     }
 
     @Test
-    public void testWinnerRatioMice2VsMice1() {
-        log.comment("Mice1 vs. Mice2");
+    public void testWinnerRatioMouse2VsMouse1() {
+        log.comment("Mouse1 vs. Mouse2");
 
-        Creature mice1 = new Mice();
-        Creature mice2 = new Mice();
+        Creature mouse1 = new Mouse();
+        Creature mouse2 = new Mouse();
 
-        int mice1Counter = 0;
-        int mice2Counter = 0;
+        int mouse1Counter = 0;
+        int mouse2Counter = 0;
 
-        Combat combat = new Combat(mice2, mice1);
+        Combat combat = new Combat(mouse2, mouse1);
 
         for (int i = 1; i <= 1000; ++i) {
             Creature winner = combat.fight();
 
-            if (winner.equals(mice2)) {
-                ++mice2Counter;
+            if (winner.equals(mouse2)) {
+                ++mouse2Counter;
             } else {
-                ++mice1Counter;
+                ++mouse1Counter;
             }
         }
 
-        double mice1Ratio = mice1Counter / 10d;
-        double mice2Ratio = mice2Counter / 10d;
+        double mouse1Ratio = mouse1Counter / 10d;
+        double mouse2Ratio = mouse2Counter / 10d;
 
-        log.info("mice1 wins: " + mice1Counter + " times");
-        log.info("mice2 wins: " + mice2Counter + " times");
-        log.info("mice1 ratio: " + mice1Ratio + "%");
-        log.info("mice2 ratio: " + mice2Ratio + "%");
+        log.info("mouse1 wins: " + mouse1Counter + " times");
+        log.info("mouse2 wins: " + mouse2Counter + " times");
+        log.info("mouse1 ratio: " + mouse1Ratio + "%");
+        log.info("mouse2 ratio: " + mouse2Ratio + "%");
     }
 
     @Test

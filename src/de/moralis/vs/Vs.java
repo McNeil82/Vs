@@ -2,7 +2,7 @@ package de.moralis.vs;
 
 import de.moralis.logging.LoggingTransformer;
 import de.moralis.vs.general.Creature;
-import de.moralis.vs.models.Mice;
+import de.moralis.vs.models.Mouse;
 import de.moralis.vs.models.Rat;
 
 public class Vs {
@@ -14,15 +14,15 @@ public class Vs {
     public static void main(String[] args) {
         evaluateArgs(args);
 
-        Creature mice1 = new Mice();
-        Creature mice2 = new Mice();
+        Creature mouse1 = new Mouse();
+        Creature mouse2 = new Mouse();
         Creature rat1 = new Rat();
         Creature rat2 = new Rat();
 
-        Combat combat = new Combat(mice1, rat1);
+        Combat combat = new Combat(mouse1, rat1);
         combat.fight();
 
-        combat = new Combat(mice1, mice2);
+        combat = new Combat(mouse1, mouse2);
         combat.fight();
 
         combat = new Combat(rat1, rat2);
