@@ -17,11 +17,13 @@ public class Logger {
         java.util.logging.Logger log = java.util.logging.Logger.getLogger(name);
         log.setUseParentHandlers(false);
 
-        try {
-            FileHandler fileHandler = new FileHandler("logs/xml/" + name + ".xml");
-            log.addHandler(fileHandler);
-        } catch (IOException e) {
-            log.severe("can not create file handler: " + e.getMessage());
+        if (log.getHandlers().length == 0) {
+            try {
+                FileHandler fileHandler = new FileHandler("logs/xml/" + name + ".xml");
+                log.addHandler(fileHandler);
+            } catch (IOException e) {
+                log.severe("can not create file handler: " + e.getMessage());
+            }
         }
 
         if (Boolean.valueOf(System.getProperty("debug")) != TRUE) {
